@@ -11,10 +11,10 @@ def home():
 async def upload(file: UploadFile, company: str, period: str):
     contents = await file.read()
 
-    file_path = f"/tmp/{file.filename}"
-    with open(file_path, "wb") as f:
-        f.write(contents)
+    from app.extractor import extract_financials
 
-    process_document.delay(file_path, company, period)
+    text = contents.decode("utf-8", errors="ignore")
 
-    return {"status": "processing"}
+    result = extract_financials(text)
+
+    return {"result": result}
