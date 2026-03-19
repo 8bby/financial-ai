@@ -4,3 +4,5 @@ celery
 redis
 python-multipart
 openai
+pandas
+openpyxl
