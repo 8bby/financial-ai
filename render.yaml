@@ -9,3 +9,4 @@ services:
     name: financial-worker
     env: docker
     plan: free
+    dockerCommand: celery -A app.worker worker --loglevel=info
