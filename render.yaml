@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: financial-api
+    env: docker
+    plan: free
+    autoDeploy: true
+
+  - type: worker
+    name: financial-worker
+    env: docker
+    plan: free
+    startCommand: celery -A app.worker worker --loglevel=info
